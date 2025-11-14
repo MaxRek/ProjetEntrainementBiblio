@@ -1,4 +1,4 @@
-package com.example.ProjetEntrainementBibiliotheque;
+package com.example.ProjetEntrainementBibliotheque;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
