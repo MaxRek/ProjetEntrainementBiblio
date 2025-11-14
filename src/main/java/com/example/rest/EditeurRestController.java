@@ -16,10 +16,10 @@ import com.fasterxml.jackson.annotation.JsonView;
 
 import com.example.model.Editeur;
 import com.example.service.EditeurService;
-import com.example.model.Views;
+import com.example.view.Views;
 
 @RestController
-@RequestMapping("/api/editeurs")
+@RequestMapping("/api/editeur")
 public class EditeurRestController {
 
     @Autowired
