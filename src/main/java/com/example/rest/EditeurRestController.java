@@ -12,11 +12,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.fasterxml.jackson.annotation.JsonView;
-
 import com.example.model.Editeur;
 import com.example.service.EditeurService;
-import com.example.model.Views;
+import com.example.view.Views;
+import com.fasterxml.jackson.annotation.JsonView;
 
 @RestController
 @RequestMapping("/api/editeurs")
