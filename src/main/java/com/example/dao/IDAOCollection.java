@@ -8,5 +8,6 @@ import com.example.model.Collection;
 
 public interface IDAOCollection extends JpaRepository<Collection, Integer>{
 
+	public List<Collection> findByNomContaining(String recherche);
 	
 }
