@@ -1,7 +1,5 @@
 package com.example.view;
 
-import com.example.view.Views.Common;
-
 public class Views {
 
 	public class Common {} //Toutes les types primitifs + String 

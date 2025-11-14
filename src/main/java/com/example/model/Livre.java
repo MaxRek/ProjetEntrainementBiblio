@@ -58,7 +58,7 @@ public class Livre {
     	this.annee = annee;
     	this.auteur = auteur;
    		this.editeur = editeur;
-    	this.collection = collection
+    	this.collection = collection;
 	}
 
 	public Livre(String titre, String resumer, String annee, Auteur auteur, Editeur editeur, Collection collection) {
@@ -67,7 +67,7 @@ public class Livre {
     	this.annee = annee;
     	this.auteur = auteur;
    		this.editeur = editeur;
-    	this.collection = collection
+    	this.collection = collection;
 	}
 
 	public Integer getId() {
