@@ -18,7 +18,7 @@ import com.example.view.Views;
 import com.fasterxml.jackson.annotation.JsonView;
 
 @RestController
-@RequestMapping("/api/editeurs")
+@RequestMapping("/api/editeur")
 public class EditeurRestController {
 
     @Autowired
