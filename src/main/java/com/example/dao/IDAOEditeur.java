@@ -11,7 +11,4 @@ import com.example.model.Editeur;
 public interface IDAOEditeur extends JpaRepository<Editeur, Integer> {
 
     public List<Editeur> findByNomContaining(String recherche);
-
-    @Query("SELECT e FROM Editeur e WHERE e.nom like :recherche")
-    public List<Editeur> rechercherParNom(@Param("recherche") String recherche);
 }
