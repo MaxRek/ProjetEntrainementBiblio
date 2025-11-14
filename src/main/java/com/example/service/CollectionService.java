@@ -32,9 +32,9 @@ public class CollectionService {
 		return daoCollection.findAll();
 	}
 	
-	public List<Collection> getAllByLibelleLike(String recherche)
+	public List<Collection> getAllByNomLike(String recherche)
 	{
-		return daoCollection.findByLibelleContaining(recherche);
+		return daoCollection.findByNomContaining(recherche);
 	}
 
 	public Collection create(Collection collection) 
