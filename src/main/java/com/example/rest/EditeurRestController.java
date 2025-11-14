@@ -43,7 +43,7 @@ public class EditeurRestController {
 
     @JsonView(Views.Editeur.class)
     @PutMapping("/{id}")
-    public Editeur modifierMatiere(@PathVariable Integer id, @RequestBody Editeur editeur) {
+    public Editeur modifierEditeur(@PathVariable Integer id, @RequestBody Editeur editeur) {
         editeur.setId(id);
         return editeurService.update(editeur);
     }
