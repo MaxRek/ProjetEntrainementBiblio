@@ -36,17 +36,17 @@ public class Livre {
 
 	@ManyToOne
 	@JoinColumn(name="auteur", nullable = false)
-	@JsonView(Views.AuteurWithLivre.class)
+	@JsonView(Views.Livre.class)
 	private Auteur auteur;
 
 	@ManyToOne
 	@JoinColumn(name="editeur", nullable = false)
-	@JsonView(Views.EditeurWithLivre.class)
+	@JsonView(Views.Livre.class)
 	private Editeur editeur;
 
 	@OneToOne
 	@JoinColumn(name="collection", nullable = true)
-	@JsonView(Views.CollectionWithLivre.class)
+	@JsonView(Views.Livre.class)
 	private Collection collection;
 	
 	public Livre() {}
