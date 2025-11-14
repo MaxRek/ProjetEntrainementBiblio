@@ -1,5 +1,8 @@
 package com.example.model;
 
+import com.example.view.Views;
+import com.fasterxml.jackson.annotation.JsonView;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -13,12 +16,15 @@ public class Editeur {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@JsonView(Views.Common.class)
 	private Integer id;
 	
 	@Column(name="nom", length=100, nullable=false)
+	@JsonView(Views.Common.class)
 	private String nom;
 	
 	@Column(name="pays", length=100, nullable=false)
+	@JsonView(Views.Common.class)
 	private String pays;
 	
 	public Editeur() {}
