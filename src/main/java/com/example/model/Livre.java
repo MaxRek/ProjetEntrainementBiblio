@@ -1,5 +1,6 @@
 package com.example.model;
 
+import com.example.view.Views;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import jakarta.persistence.Column;
@@ -11,7 +12,6 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
-import com.example.view.Views;
 
 @Entity
 @Table(name="livre")
@@ -22,36 +22,36 @@ public class Livre {
 	@JsonView(Views.Common.class)
 	private Integer id;
 	
-	@Column(length = 50,nullable = false)
+	@Column(length = 50, nullable = false)
 	@JsonView(Views.Common.class)
 	private String titre;
 
-	@Column(length = 500,nullable = false)
+	@Column(length = 500, nullable = false)
 	@JsonView(Views.Common.class)
-	private String résumer;
+	private String resumer;
 
-	@Column(length = 4,nullable = false)
+	@Column(length = 4, nullable = false)
 	@JsonView(Views.Common.class)
-	private String année;
+	private String annee;
 
 	@ManyToOne
-	@JoinColumn(name="auteur",nullable = false)
+	@JoinColumn(name="auteur", nullable = false)
 	@JsonView(Views.AuteurWithLivre.class)
 	private Auteur auteur;
 
 	@ManyToOne
-	@JoinColumn(name="editeur",nullable = false)
+	@JoinColumn(name="editeur", nullable = false)
 	@JsonView(Views.EditeurWithLivre.class)
 	private Editeur editeur;
 
 	@OneToOne
-	@JoinColumn(name="collection",nullable = yes)
+	@JoinColumn(name="collection", nullable = true)
 	@JsonView(Views.CollectionWithLivre.class)
 	private Collection collection;
 	
 	public Livre() {}
 	
-	public Livre(Integer id, String titre, String résumer, String année, Auteur auteur, Editeur editeur, Collection collection) {
+	public Livre(Integer id, String titre, String resumer, String annee, Auteur auteur, Editeur editeur, Collection collection) {
 		this.id = id;
 		this.titre = titre;
     	this.resumer = resumer;
@@ -61,7 +61,7 @@ public class Livre {
     	this.collection = collection
 	}
 
-	public Livre(String titre, String résumer, String année, String auteur, String editeur, String collection) {
+	public Livre(String titre, String resumer, String annee, Auteur auteur, Editeur editeur, Collection collection) {
 		this.titre = titre;
     	this.resumer = resumer;
     	this.annee = annee;
@@ -86,20 +86,20 @@ public class Livre {
 		this.titre = titre;
 	}
 
-	public String getRésumer() {
-		return résumer;
+	public String getResumer() {
+		return resumer;
 	}
 
-	public void setRésumer(String résumer) {
-		this.résumer = résumer;
+	public void setResumer(String resumer) {
+		this.resumer = resumer;
 	}
 
-	public String getAnnée() {
-		return année;
+	public String getAnnee() {
+		return annee;
 	}
 
-	public void setAnnée(String année) {
-		this.année = année;
+	public void setAnnee(String annee) {
+		this.annee = annee;
 	}
 
 	public Auteur getAuteur() {
@@ -128,7 +128,7 @@ public class Livre {
 
 	@Override
 	public String toString() {
-		return "Livre [id=" + id + ", titre=" + titre + ", résumer=" + résumer + ", année=" + année + ", auteur="
+		return "Livre [id=" + id + ", titre=" + titre + ", resumer=" + resumer + ", annee=" + annee + ", auteur="
 				+ auteur + "]";
 	}
 }
