@@ -1,12 +1,9 @@
 package com.example.view;
 
+import com.example.view.Views.Common;
+
 public class Views {
 
-<<<<<<< Updated upstream
-	public class Common{}
-
-	public class Auteur extends Common{}
-=======
 	public class Common {} //Toutes les types primitifs + String 
 	
 	public class Livre extends Common {} //Tous les objets toOne de la classe Livre + de Common
@@ -23,5 +20,4 @@ public class Views {
 	
 	public class CollectionWithLivre extends Livre{}  // Tout le contenu de la view Collection + la liste des livres
 	
->>>>>>> Stashed changes
 }
