@@ -8,6 +8,5 @@ import com.example.model.Collection;
 
 public interface IDAOCollection extends JpaRepository<Collection, Integer>{
 
-	public List<Collection> findByLibelleContaining(String recherche);
 	
 }
