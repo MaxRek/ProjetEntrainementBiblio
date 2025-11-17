@@ -1,3 +1,7 @@
+import { AuteurDto } from "./auteur-dto";
+import { CollectionDto } from "./collection-dto";
+import { EditeurDto } from "./editeur-dto";
+
 export class LivreDto {
 
     constructor(
@@ -5,9 +9,9 @@ export class LivreDto {
 	private _titre:string,
     private _resumer:string,
     private _annee:string,
-    private _auteur: any,
-    private _editeur: any,
-    private _collection?: any
+    private _auteur: AuteurDto | null,
+    private _editeur: EditeurDto | null,
+    private _collection?: CollectionDto | null
     ) {}
 	
 public get id(): number {
@@ -42,40 +46,35 @@ public set annee(value: string) {
     this._annee = value;
 }
 
-    public get auteur(): any {
-        return this._auteur;
-    }
+public get auteur(): AuteurDto | null {
+    return this._auteur;
+  }
+  public set auteur(value: AuteurDto | null) {
+    this._auteur = value;
+  }
 
-    public set auteur(value: any) {
-        this._auteur = value;
-    }
+  public get editeur(): EditeurDto | null {
+    return this._editeur;
+  }
+  public set editeur(value: EditeurDto | null) {
+    this._editeur = value;
+  }
 
-    public get editeur(): any {
-        return this._editeur;
-    }
+  public get collection(): CollectionDto | null | undefined {
+    return this._collection;
+  }
+  public set collection(value: CollectionDto | null | undefined) {
+    this._collection = value;
+  }
 
-    public set editeur(value: any) {
-        this._editeur = value;
-    }
-
-    public get collection(): any | undefined {
-        return this._collection;
-    }
-
-    public set collection(value: any | undefined) {
-        this._collection = value;
-    }
-
-
-    public toJson(): any {
-        return {
-            id: this._id ?? null,
-            titre: this._titre,
-            resumer: this._resumer,
-            annee: this._annee,
-            auteur: this._auteur,
-            editeur: this._editeur,
-            collection: this._collection ?? null
-        };
-    }
+  public toJson(): any {
+    return {
+      titre: this._titre,
+      resumer: this._resumer,
+      annee: this._annee,
+      auteur: this._auteur ? { id: this._auteur.id } : null,
+      editeur: this._editeur ? { id: this._editeur.id } : null,
+      collection: this._collection ? { id: this._collection.id } : null
+    };
+  }
 }
