@@ -8,7 +8,7 @@ import { LivreDto } from '../dto/livre-dto';
 })
 export class LivreService {
   
-  private apiUrl: string = '/livres';
+  private apiUrl: string = 'http://localhost:8080/api/livre';
   private refresh$: Subject<void> = new Subject<void>();
 
   constructor(private http: HttpClient) {}
