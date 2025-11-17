@@ -6,34 +6,34 @@ export class EditeurDto {
   ) { }
 
   public get id(): number {
-    return this._id;
-}
+      return this._id;
+  }
 
-public set id(value: number) {
-    this._id = value;
-}
+  public set id(value: number) {
+      this._id = value;
+  }
 
-public get nom(): string {
-    return this._nom;
-}
+  public get nom(): string {
+      return this._nom;
+  }
 
-public set nom(value: string) {
-    this._nom = value;
-}
+  public set nom(value: string) {
+      this._nom = value;
+  }
 
-public get pays(): string {
-  return this._pays;
-}
+  public get pays(): string {
+    return this._pays;
+  }
 
-public set pays(value: string) {
-  this._pays = value;
-}
+  public set pays(value: string) {
+    this._pays = value;
+  }
 
-public toJson(): any {
-    return {
-      nom: this.nom,
-      pays: this.pays,
-    };
-}
+  public toJson(): any {
+      return {
+        nom: this.nom,
+        pays: this.pays,
+      };
+  }
 
 }

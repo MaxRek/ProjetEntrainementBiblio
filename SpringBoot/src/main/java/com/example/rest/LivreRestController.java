@@ -21,6 +21,7 @@ import com.example.view.Views;
 
 @RestController
 @RequestMapping("/api/livre")
+@CrossOrigin("*")
 public class LivreRestController {
 
 	@Autowired
