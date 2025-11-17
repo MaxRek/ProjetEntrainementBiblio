@@ -1,34 +1,8 @@
 <body>
 
-<p>Liste des éditeurs</p>
+<h1>Liste des éditeurs</h1>
 
-<form (ngSubmit)="createOrModifyEditeur()" [formGroup]="editeurForm">
-  <div>
-    <label for="nom">Nom</label>
-    <input id="nom" type="text" formControlName="nom" />
 
-    @if (nomCtrl.hasError('required') && nomCtrl.touched) {
-      <span>Le nom est obligatoire</span>
-    }
-  </div>
-
-  <div>
-    <label for="pays">Pays</label>
-    <input id="pays" type="text" formControlName="pays" />
-
-    @if (paysCtrl.hasError('required') && paysCtrl.touched) {
-      <span>Le pays est obligatoire</span>
-    }
-</div>
-
-@if (editingEditeur) {
-    <input type="submit" [disabled]="editeurForm.invalid" value="Modifier" />
-} @else {
-    <input type="submit" [disabled]="editeurForm.invalid" value="Créer" />
-}
-</form>
-
-<hr />
 
 <div class="table-container">
 <table>
@@ -54,5 +28,32 @@
     </tbody>
 </table>
 </div>
+
+<h1>Ajout et modification</h1>
+<form (ngSubmit)="createOrModifyEditeur()" [formGroup]="editeurForm">
+  <div>
+    <label for="nom">Nom</label>
+    <input id="nom" type="text" formControlName="nom" />
+
+    @if (nomCtrl.hasError('required') && nomCtrl.touched) {
+      <span>Le nom est obligatoire</span>
+    }
+  </div>
+
+  <div>
+    <label for="pays">Pays</label>
+    <input id="pays" type="text" formControlName="pays" />
+
+    @if (paysCtrl.hasError('required') && paysCtrl.touched) {
+      <span>Le pays est obligatoire</span>
+    }
+</div>
+
+@if (editingEditeur) {
+    <input type="submit" [disabled]="editeurForm.invalid" value="Modifier" />
+} @else {
+    <input type="submit" [disabled]="editeurForm.invalid" value="Créer" />
+}
+</form>
 
 </body>

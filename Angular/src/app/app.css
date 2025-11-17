@@ -46,3 +46,11 @@ header {
 .nav-item:hover {
     background: #d4d0c8;
 }
+
+body {
+    font-family: 'MS Sans Serif', 'Microsoft Sans Serif', sans-serif;
+    background: #008080;
+    color: #000;
+    height: 100vh;
+}
+

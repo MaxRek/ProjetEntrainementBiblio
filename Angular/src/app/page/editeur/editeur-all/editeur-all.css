@@ -1,11 +1,3 @@
-body {
-    font-family: 'MS Sans Serif', 'Microsoft Sans Serif', sans-serif;
-    background: #008080;
-    color: #000;
-    margin: 0;
-    padding: 2rem;
-}
-
 p {
     font-size: 1rem;
     margin-bottom: 1rem;
@@ -77,6 +69,7 @@ input[type="submit"]:active {
 }
 
 table {
+    padding: 10px;
     width: auto;
     border-collapse: collapse;
     background: #ffffff;
@@ -129,4 +122,17 @@ button:active {
 
 button:focus {
     outline: 1px dotted #000;
+}
+
+h1 {
+    width: fit-content;
+    color: #000;
+    font-family: 'MS Sans Serif', 'Microsoft Sans Serif', sans-serif;
+    font-size: 1.5rem;
+    font-weight: bold;
+    padding: 0.5rem 1rem;
+    background: #c0c0c0;
+    border: 2px solid;
+    border-color: #ffffff #808080 #808080 #ffffff;
+    box-shadow: inset 1px 1px 0 #dfdfdf, inset -1px -1px 0 #000000;
 }
