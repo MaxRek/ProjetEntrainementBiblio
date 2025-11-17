@@ -1,1 +1,18 @@
-<p>auteur-all works!</p>
+<table>
+    <tr>
+        <td>id</td>
+        <td>nom</td>
+        <td>prenom</td>
+        <td>nationalite</td>
+    </tr>
+    <tr *ngFor="let auteur of auteurs$ | async; trackBy: trackAuteur">
+        <td>{{ auteur.id }}</td>
+        <td>{{ auteur.nom }}</td>
+        <td>{{ auteur.prenom }}</td>
+        <td>{{ auteur.nationalite }}</td>
+        <td>
+            <button>Modifier</button>
+            <button>Supprimer</button>
+        </td>
+    </tr>
+</table>

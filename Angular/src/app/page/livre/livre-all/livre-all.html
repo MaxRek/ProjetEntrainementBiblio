@@ -1,0 +1,85 @@
+<h1>Liste des livres</h1>
+
+<form (ngSubmit)="creerOuModifierLivre()" [formGroup]="livreForm">
+    <div>
+        <label for="titre">Titre</label>
+        <input id="titre" type="text" formControlName="titre" />
+
+        @if (titreCtrl.hasError('required') && titreCtrl.touched) {
+            <span>Le titre est obligatoire</span>
+        }
+    </div>
+
+    <div>
+        <label for="resumer">Résumé</label>
+        <textarea id="resumer" formControlName="resumer"></textarea>
+
+        @if (resumerCtrl.hasError('required') && resumerCtrl.touched) {
+            <span>Le résumé est obligatoire</span>
+        }
+        @if (resumerCtrl.hasError('maxlength') && resumerCtrl.touched) {
+            <span>Le résumé ne doit pas dépasser 500 caractères</span>
+        }
+    </div>
+
+    <div>
+        <label for="annee">Année</label>
+        <input id="annee" type="text" formControlName="annee" />
+
+        @if (anneeCtrl.hasError('required') && anneeCtrl.touched) {
+            <span>L'année est obligatoire</span>
+        }
+        @if ((anneeCtrl.hasError('minlength') || anneeCtrl.hasError('maxlength')) && anneeCtrl.touched) {
+            <span>L'année doit contenir exactement 4 caractères</span>
+        }
+    </div>
+
+    <!-- Champs simplifiés pour auteur / éditeur / collection, à améliorer plus tard -->
+    <div>
+        <label for="auteur">Auteur (temporaire)</label>
+        <input id="auteur" type="text" formControlName="auteur" />
+    </div>
+
+    <div>
+        <label for="editeur">Éditeur (temporaire)</label>
+        <input id="editeur" type="text" formControlName="editeur" />
+    </div>
+
+    <div>
+        <label for="collection">Collection (temporaire)</label>
+        <input id="collection" type="text" formControlName="collection" />
+    </div>
+
+    @if (editingLivre) {
+        <input type="submit" [disabled]="livreForm.invalid" value="Modifier" />
+    } @else {
+        <input type="submit" [disabled]="livreForm.invalid" value="Créer" />
+    }
+</form>
+
+<hr />
+
+<table>
+    <thead>
+        <tr>
+            <th>Titre</th>
+            <th>Année</th>
+            <th>Résumé</th>
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr *ngFor="let livre of livres$ | async; trackBy: trackLivre">
+            <td>
+                <a [routerLink]="['/livre', livre.id]">{{ livre.titre }}</a>
+            </td>
+            <td>{{ livre.annee }}</td>
+            <td>{{ livre.resumer }}</td>
+            <td>
+                <button type="button" (click)="editer(livre)">Modifier</button>
+                <button type="button" (click)="supprimerLivre(livre)">Supprimer</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
