@@ -20,7 +20,7 @@ export class AuteurAll implements OnInit{
     this.auteurs$ = this.auteurService.findAll();
   }
 
-  /*public trackAuteur(index: number, value: AuteurDto) {
+  public trackAuteur(index: number, value: AuteurDto) {
     return value.id;
-  }*/
+  }
 }
