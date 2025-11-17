@@ -1,11 +1,17 @@
+// livre-all.ts
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { LivreDto } from '../../../dto/livre-dto';
 import { FormGroup, FormControl, FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { Observable } from 'rxjs';
+import { AuteurDto } from '../../../dto/auteur-dto';
+import { CollectionDto } from '../../../dto/collection-dto';
+import { EditeurDto } from '../../../dto/editeur-dto';
+import { LivreDto } from '../../../dto/livre-dto';
+import { AuteurService } from '../../../service/auteur-service';
+import { CollectionService } from '../../../service/collection-service';
+import { EditeurService } from '../../../service/editeur-service';
 import { LivreService } from '../../../service/livre-service';
-
 @Component({
   selector: 'app-livre-all',
   standalone: true,
@@ -16,6 +22,9 @@ import { LivreService } from '../../../service/livre-service';
 export class LivreAll implements OnInit {
 
   protected livres$!: Observable<LivreDto[]>;
+  protected auteurs$!: Observable<AuteurDto[]>;
+  protected editeurs$!: Observable<EditeurDto[]>;
+  protected collections$!: Observable<CollectionDto[]>;
 
   protected livreForm!: FormGroup;
   protected titreCtrl!: FormControl;
@@ -25,21 +34,29 @@ export class LivreAll implements OnInit {
   protected editeurCtrl!: FormControl;
   protected collectionCtrl!: FormControl;
 
-  protected editingLivre!: LivreDto | null;
+  protected editingLivre: LivreDto | null = null;
 
   constructor(
-    private livreService: LivreService, 
-    private formBuilder: FormBuilder) { }
+    private livreService: LivreService,
+    private auteurService: AuteurService,
+    private editeurService: EditeurService,
+    private collectionService: CollectionService,
+    private formBuilder: FormBuilder
+  ) { }
 
   ngOnInit(): void {
-    this.reloadLivres();
+    this.livres$ = this.livreService.findAll();
+    this.auteurs$ = this.auteurService.findAll();
+    this.editeurs$ = this.editeurService.findAll();
+    this.collections$ = this.collectionService.findAll();
 
     this.titreCtrl = this.formBuilder.control('', Validators.required);
     this.resumerCtrl = this.formBuilder.control('', [Validators.required, Validators.maxLength(500)]);
     this.anneeCtrl = this.formBuilder.control('', [Validators.required, Validators.minLength(4), Validators.maxLength(4)]);
-    this.auteurCtrl = this.formBuilder.control(null);
-    this.editeurCtrl = this.formBuilder.control(null);
-    this.collectionCtrl = this.formBuilder.control(null);
+
+    this.auteurCtrl = this.formBuilder.control<AuteurDto | null>(null, Validators.required);
+    this.editeurCtrl = this.formBuilder.control<EditeurDto | null>(null, Validators.required);
+    this.collectionCtrl = this.formBuilder.control<CollectionDto | null>(null);
 
     this.livreForm = this.formBuilder.group({
       titre: this.titreCtrl,
@@ -55,8 +72,16 @@ export class LivreAll implements OnInit {
     return value.id;
   }
 
-  private reloadLivres(): void {
-    this.livres$ = this.livreService.findAll();
+  public trackAuteur(index: number, value: AuteurDto) {
+    return value.id;
+  }
+
+  public trackEditeur(index: number, value: EditeurDto) {
+    return value.id;
+  }
+
+  public trackCollection(index: number, value: CollectionDto) {
+    return value.id;
   }
 
   public creerOuModifierLivre(): void {
@@ -67,6 +92,10 @@ export class LivreAll implements OnInit {
 
     const formValue = this.livreForm.value;
 
+    const auteur: AuteurDto | null = formValue.auteur ?? null;
+    const editeur: EditeurDto | null = formValue.editeur ?? null;
+    const collection: CollectionDto | null = formValue.collection ?? null;
+
     let dto: LivreDto;
 
     if (this.editingLivre) {
@@ -76,9 +105,9 @@ export class LivreAll implements OnInit {
         formValue.titre,
         formValue.resumer,
         formValue.annee,
-        formValue.auteur ?? this.editingLivre.auteur,
-        formValue.editeur ?? this.editingLivre.editeur,
-        formValue.collection ?? this.editingLivre.collection
+        auteur ?? this.editingLivre.auteur,
+        editeur ?? this.editingLivre.editeur,
+        collection ?? this.editingLivre.collection ?? null
       );
     } else {
       // création
@@ -87,16 +116,15 @@ export class LivreAll implements OnInit {
         formValue.titre,
         formValue.resumer,
         formValue.annee,
-        formValue.auteur ?? null,
-        formValue.editeur ?? null,
-        formValue.collection ?? null
+        auteur,
+        editeur,
+        collection
       );
     }
 
     this.livreService.save(dto);
     this.editingLivre = null;
     this.livreForm.reset();
-    this.reloadLivres(); 
   }
 
   public editer(livre: LivreDto) {
@@ -106,14 +134,13 @@ export class LivreAll implements OnInit {
       titre: livre.titre,
       resumer: livre.resumer,
       annee: livre.annee,
-      auteur: livre.auteur,
-      editeur: livre.editeur,
-      collection: livre.collection
+      auteur: livre.auteur ?? null,
+      editeur: livre.editeur ?? null,
+      collection: livre.collection ?? null
     });
   }
 
   public supprimerLivre(livre: LivreDto): void {
     this.livreService.deleteById(livre.id);
-    this.reloadLivres();
   }
 }

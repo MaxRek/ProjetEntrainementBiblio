@@ -1,20 +1,23 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, Subject } from 'rxjs';
+import { Observable, Subject, startWith, switchMap } from 'rxjs';
 import { LivreDto } from '../dto/livre-dto';
 
 @Injectable({
   providedIn: 'root',
 })
 export class LivreService {
-  
+
   private apiUrl: string = 'http://localhost:8080/api/livre';
   private refresh$: Subject<void> = new Subject<void>();
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   public findAll(): Observable<LivreDto[]> {
-    return this.http.get<LivreDto[]>(this.apiUrl);
+    return this.refresh$.pipe(
+      startWith(null),
+      switchMap(() => this.http.get<LivreDto[]>(this.apiUrl))
+    );
   }
 
   public findById(id: number): Observable<LivreDto> {
@@ -27,10 +30,10 @@ export class LivreService {
 
   public save(livre: LivreDto): void {
     const payload = livre.toJson();
+
     if (!livre.id) {
       this.http.post<LivreDto>(this.apiUrl, payload).subscribe(() => this.refresh());
-    }
-    else {
+    } else {
       this.http.put<LivreDto>(`${this.apiUrl}/${livre.id}`, payload).subscribe(() => this.refresh());
     }
   }
