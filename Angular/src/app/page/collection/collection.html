@@ -9,7 +9,10 @@
 <tr *ngFor="let c of collections$ | async">
     <td>{{c.id}}</td>
     <td>{{c.nom}}</td>
-    <td></td>
+    <td>
+        <button (click)="editer(c)">Modifier</button>
+        <button (click)="supprimer(c)">Supprimer</button>
+    </td>
 </tr>
 
 </table>

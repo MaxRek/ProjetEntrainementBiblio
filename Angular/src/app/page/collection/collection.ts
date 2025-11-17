@@ -20,6 +20,7 @@ export class Collection {
   protected idCtrl!: FormControl;
   protected nomCtrl!: FormControl;
 
+  protected editingCol!: CollectionDto | null;
 
   constructor(private collectionService: CollectionService, private formBuilder: FormBuilder) { }
 
@@ -32,7 +33,7 @@ ngOnInit () : void {
 
     this.collectionForm = this.formBuilder.group({
       id: this.idCtrl,
-      password: this.nomCtrl
+      nom: this.nomCtrl
     });
 }
 
@@ -42,5 +43,11 @@ public creerModif() {
 
  public supprimer(collection: CollectionDto) {
     this.collectionService.deleteById(collection.id);
+  }
+
+  public editer(collection: CollectionDto) {
+    this.editingCol = collection;
+    this.nomCtrl.setValue(collection.nom);
+    this.idCtrl.setValue(collection.id);
   }
 }
