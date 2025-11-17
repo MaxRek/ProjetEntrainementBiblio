@@ -1,0 +1,28 @@
+<p>collection works!</p>
+
+<table>
+<tr>
+    <th>Id</th>
+    <th>Nom</th>
+    <th></th>
+</tr>
+<tr *ngFor="let c of collections$ | async">
+    <td>{{c.id}}</td>
+    <td>{{c.nom}}</td>
+    <td>
+        <button (click)="editer(c)">Modifier</button>
+        <button (click)="supprimer(c)">Supprimer</button>
+    </td>
+</tr>
+
+</table>
+
+<form (ngSubmit)="creerModif()" [formGroup]="collectionForm">
+    <div>
+        <input type="number" formControlName="id" />
+    </div>
+     <div>
+        <input type="text" formControlName="nom" />
+    </div>
+        <input type="submit"  value="Modif/ajout" />
+</form>

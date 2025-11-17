@@ -1,0 +1,48 @@
+ ::ng-deep * {
+    margin: 0;
+    padding: 0;
+  }
+
+header {
+    background: linear-gradient(to bottom, #000080 0%, #1084d0 100%);
+    padding: 2px;
+    border-bottom: 2px solid #dfdfdf;
+}
+
+.header-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2px 4px;
+}
+
+.logo {
+    color: white;
+    font-family: 'MS Sans Serif', Arial, sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 2px 8px;
+}
+
+.nav-menu {
+    display: flex;
+    gap: 2px;
+}
+
+.nav-item {
+    background: #c0c0c0;
+    border: 2px outset #ffffff;
+    padding: 4px 12px;
+    font-family: 'MS Sans Serif', Arial, sans-serif;
+    font-size: 11px;
+    cursor: pointer;
+}
+
+.nav-item:active {
+    border-style: inset;
+    background: #808080;
+}
+
+.nav-item:hover {
+    background: #d4d0c8;
+}
