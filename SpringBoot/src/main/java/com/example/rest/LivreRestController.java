@@ -27,6 +27,7 @@ public class LivreRestController {
 	@Autowired
 	LivreService livreSrv;
 
+	@CrossOrigin("*")
 	@JsonView(Views.Livre.class)
 	@GetMapping
 	public List<Livre> allLivres()
