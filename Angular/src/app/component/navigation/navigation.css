@@ -11,6 +11,8 @@ footer {
     border-bottom: 2px solid #808080;
     box-shadow: inset 1px 1px 0 #dfdfdf, inset -1px -1px 0 #000000;
     position: fixed;
+    bottom: 0;
+    left: 0;
     width: 100%;
 }
 
