@@ -1,3 +1,35 @@
 .active {
     font-weight: bold;
 }
+
+footer {
+    background: #c0c0c0;
+    padding: 0.25rem;
+    border-top: 2px solid #ffffff;
+    border-left: 2px solid #ffffff;
+    border-right: 2px solid #808080;
+    border-bottom: 2px solid #808080;
+    box-shadow: inset 1px 1px 0 #dfdfdf, inset -1px -1px 0 #000000;
+    position: fixed;
+    width: 100%;
+}
+
+a {
+    color: #000000;
+    text-decoration: none;
+    margin: 0 0.5rem;
+    padding: 0.25rem 0.5rem;
+    background: #c0c0c0;
+    border-top: 2px solid #ffffff;
+    border-left: 2px solid #ffffff;
+    border-right: 2px solid #808080;
+    border-bottom: 2px solid #808080;
+    display: inline-block;
+}
+
+a:active {
+    border-top: 2px solid #808080;
+    border-left: 2px solid #808080;
+    border-right: 2px solid #ffffff;
+    border-bottom: 2px solid #ffffff;
+}
