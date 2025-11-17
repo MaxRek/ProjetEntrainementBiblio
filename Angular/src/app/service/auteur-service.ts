@@ -22,4 +22,25 @@ export class AuteurService {
     )
   }
 
+  public refresh() {
+    this.refresh$.next();
+  }
+
+  public findById(id:number): Observable<AuteurDto> {
+    return this.http.get<AuteurDto>(`${ this.apiUrl }/${ id }`);
+  }
+
+  public save(auteurDto : AuteurDto): void {
+    const payload = auteurDto.toJson();
+
+    if (!auteurDto.id){
+      this.http.post<AuteurDto>(this.apiUrl, payload).subscribe(() => this.refresh()); 
+    }
+
+    this.http.put<AuteurDto>(`${ this.apiUrl }/${ auteurDto.id }`, payload).subscribe(() => this.refresh());
+  }
+
+  public deleteById(id:number):void {
+    this.http.delete<void>(`${ this.apiUrl }/${ id }`).subscribe(() => this.refresh());
+  }
 }
