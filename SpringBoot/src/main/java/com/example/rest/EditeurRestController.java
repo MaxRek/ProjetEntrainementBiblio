@@ -3,6 +3,7 @@ package com.example.rest;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,13 +18,14 @@ import com.example.service.EditeurService;
 import com.example.view.Views;
 import com.fasterxml.jackson.annotation.JsonView;
 
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/api/editeur")
 public class EditeurRestController {
 
     @Autowired
     EditeurService editeurService;
-
+    
     @JsonView(Views.Editeur.class)
     @GetMapping
     public List<Editeur> allEditeurs() {
