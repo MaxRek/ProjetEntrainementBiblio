@@ -1,0 +1,8 @@
+<h1>Se connecter</h1>
+
+<form (ngSubmit)="connecter()" [formGroup]="userForm">
+    <input type="text" formControlName="login" placeholder="Nom d'utilisateur" />
+    <input type="password" formControlName="mdp" placeholder="Mot de passe" />
+
+    <input type="submit" value="Se connecter" />
+</form>
