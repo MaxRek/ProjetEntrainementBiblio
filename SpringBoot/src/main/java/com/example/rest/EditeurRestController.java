@@ -2,6 +2,8 @@ package com.example.rest;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -22,6 +24,8 @@ import com.fasterxml.jackson.annotation.JsonView;
 @RestController
 @RequestMapping("/api/editeur")
 public class EditeurRestController {
+    private final static Logger log = LoggerFactory.getLogger(EditeurRestController.class);
+
 
     @Autowired
     EditeurService editeurService;
@@ -29,23 +33,31 @@ public class EditeurRestController {
     @JsonView(Views.Editeur.class)
     @GetMapping
     public List<Editeur> allEditeurs() {
+        log.info("methode EditeurRestController.allEditeurs()");
+
         return editeurService.getAll();
     }
 
     @JsonView(Views.Editeur.class)
     @GetMapping("/{id}")
     public Editeur ficheEditeur(@PathVariable Integer id, Editeur editeur) {
+        log.info("methode EditeurRestController.ficheEditeur(id) avec id = "+id);
+
         return editeurService.getById(id);
     }
 
     @PostMapping
     public Editeur ajoutEditeur(@RequestBody Editeur editeur) {
+        log.info("methode EditeurRestController.ajoutEditeur()");
+
         return editeurService.create(editeur);
     }
 
     @JsonView(Views.Editeur.class)
     @PutMapping("/{id}")
     public Editeur modifierEditeur(@PathVariable Integer id, @RequestBody Editeur editeur) {
+        log.info("methode EditeurRestController.modifierEditeur(id) avec id = "+id);
+
         editeur.setId(id);
         return editeurService.update(editeur);
     }
@@ -53,6 +65,8 @@ public class EditeurRestController {
     @JsonView(Views.Editeur.class)
     @DeleteMapping("/{id}")
     public void supprimerEditeur(@PathVariable Integer id) {
+        log.info("methode EditeurRestController.supprimerEditeur()");
+
         editeurService.deleteById(id);
     }
 }

@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.crypto.SecretKey;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -30,6 +32,8 @@ import io.jsonwebtoken.security.Keys;
 @RestController
 @RequestMapping("api/utilisateur")
 public class UtilisateurRestController {
+	private final static Logger log = LoggerFactory.getLogger(UtilisateurRestController.class);
+
 	@Autowired
 	IDAOUtilisateur daoUtilisateur;
 	
@@ -55,6 +59,8 @@ public class UtilisateurRestController {
 
 	@GetMapping	
 	public List<UtilisateurResponse> findAll(){
+		log.info("methode UtilisateurRestController.findAll()");
+
 		// List<Utilisateur> users = this.dao.findAll();
 
         // System.out.println(users.size());
@@ -75,6 +81,8 @@ public class UtilisateurRestController {
 	
 	@PostMapping
 	public int subscribe(@RequestBody SubscribeUserRequest request) {
+		log.info("methode UtilisateurRestController.subscribe()");
+
 		Utilisateur utilisateur = new Utilisateur();
 		String encodedPassword = this.passwordEncoder.encode(request.getMdp());
 		
@@ -91,6 +99,8 @@ public class UtilisateurRestController {
 	@PostMapping("connexion")
 	public String connexion(@RequestBody AuthUserRequest request)
 	{
+		log.info("methode UtilisateurRestController.connexion()");
+
 		Date now = new Date();
         String key = "6E5A7234753778214125442A472D4B6150645367556B58703273357638792F42";
         SecretKey secretKey = Keys.hmacShaKeyFor(key.getBytes());
