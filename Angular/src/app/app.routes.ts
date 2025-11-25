@@ -7,10 +7,10 @@ import { LoginPage } from './page/login-page/login-page';
 import { authGuard } from './guard/auth-guard';
 
 export const routes: Routes = [
-    { path: 'livre', component: LivreAll , canActivate: [ authGuard ]},
-    { path: 'auteur', component: AuteurAll, canActivate: [ authGuard ]},
-    { path: 'collection', component: Collection, canActivate: [ authGuard ]},
-    { path: 'editeur', component: EditeurAll, canActivate: [ authGuard ]},
+    { path: 'livre', component: LivreAll },
+    { path: 'auteur', component: AuteurAll},
+    { path: 'collection', component: Collection},
+    { path: 'editeur', component: EditeurAll},
     { path: 'login', component: LoginPage }
 
 ];
